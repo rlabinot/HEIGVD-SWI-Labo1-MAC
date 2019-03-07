@@ -19,4 +19,4 @@ def handle_packet(packet):
 				exit(0)
 
 # Begin of the sniffing
-sniff(iface="wlan0", prn=handle_packet)
+sniff(iface="wlan0mon", prn=handle_packet)
