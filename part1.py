@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# Authors : Labinot Rashiti & Hamel Dylan
+# Date : 13.03.2019
+# Remark : This script sniff the WiFi network and find a client by his MAC address
 
 from scapy.all import Dot11, sniff
 import sys
