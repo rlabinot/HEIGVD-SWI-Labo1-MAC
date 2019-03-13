@@ -18,7 +18,7 @@ listClients = list()
 def myPrint(MAC, SSID):
 	# Get MAC vendor from the client
 	responseClient = requests.get(MAC_URL %(MAC))
-        jsonClient = responseClient.json()
+    jsonClient = responseClient.json()
 	# Display
 	print("{} ({}) - {}".format(MAC, jsonClient['result']['company'], ", ".join(SSID)))
 
