@@ -18,9 +18,16 @@ listClients = list()
 def myPrint(MAC, SSID):
 	# Get MAC vendor from the client
 	responseClient = requests.get(MAC_URL %(MAC))
-    jsonClient = responseClient.json()
+        jsonClient = responseClient.json()
+	
+	try: 
+		vendor = jsonClient['result']['company']
+	except:
+		vendor = "unknown vendor"
+	
+
 	# Display
-	print("{} ({}) - {}".format(MAC, jsonClient['result']['company'], ", ".join(SSID)))
+	print("{} ({}) - {}".format(MAC, vendor, ", ".join(SSID)))
 
 
 # Definition of the packets to found and manipulate
@@ -36,11 +43,13 @@ def handle_packet(packet) :
 					if packet.info not in mapClients[packet.addr2] :
 						# Add the new SSID and display it
 						mapClients[packet.addr2].add(packet.info)
+						#print("Adding a SSID to a MAC client")
 						myPrint(packet.addr2, mapClients[packet.addr2])
 				else:
 					# Add the new client and his SSID
 					listClients.append(packet.addr2)
 					mapClients[packet.addr2] = {packet.info}
+					#print("Adding a MAC client")
 					myPrint(packet.addr2, mapClients[packet.addr2])
 
 # Launch the sniffer
