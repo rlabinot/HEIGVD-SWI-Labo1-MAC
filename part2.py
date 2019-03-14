@@ -20,6 +20,7 @@ def myPrint(MAC, SSID):
 	responseClient = requests.get(MAC_URL %(MAC))
         jsonClient = responseClient.json()
 	
+	# Check if the company is known from the API
 	try: 
 		vendor = jsonClient['result']['company']
 	except:
